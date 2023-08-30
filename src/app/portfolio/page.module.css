@@ -9,6 +9,7 @@
 .items {
   display: flex;
   gap: 50px;
+  justify-content: space-between;
 }
 
 .item {
