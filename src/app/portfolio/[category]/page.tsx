@@ -4,19 +4,17 @@ import Button from '@/components/Button/Button';
 import { items } from './data';
 import { notFound } from 'next/navigation';
 
+interface paramsProps {
+  category: string
+}
+
 const getData = (cat) =>{
   const data = items[cat];
-
   if (data){
     return data;
   }
   return notFound();
 };
-
-interface paramsProps {
-  category: string
-}
-
 
 const Category = ({params}: paramsProps) => {
   const data = getData(params.category);
