@@ -1,39 +1,17 @@
 "use client";
 
 import useSWR from "swr";
-import { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const Dashboard = () => {
-  // const [data, setData] = useState([]);
-  // const [error, setError] = useState(false);
-  // const [isLoading, setIsLoading] = useState(true);
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
-  //       cache: "no-store",
-  //     });
-
-  //     if (!res.ok) {
-  //       setError(true);
-  //     }
-  //     const data = await res.json()
-
-  //     setData(data)
-  //     setIsLoading(false)
-  //   };
-  //   getData()
-  // },[]);
-
-  // console.log(data);
 
   const session = useSession();
   const router = useRouter();
 
+  // noinspection TypeScriptValidateTypes
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const { data, mutate, error, isLoading } = useSWR(
     `/api/posts?username=${session?.data?.user.name}`,
@@ -99,7 +77,7 @@ const Dashboard = () => {
                     height={100}
                   />
                 </div>
-                <h2 className={styles.postTitle}>{post.title}</h2>
+                <h2>{post.title}</h2>
                 <span
                   className={styles.delete}
                   onClick={() => handleDelete(post._id)}
