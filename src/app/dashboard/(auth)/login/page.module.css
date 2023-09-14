@@ -68,3 +68,7 @@
 .google:hover {
   background-color: rgba(228, 97, 50, 0.803);
 }
+
+.buttonGoogle {
+  padding: 10px 20px;
+}
